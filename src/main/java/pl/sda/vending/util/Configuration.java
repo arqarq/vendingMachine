@@ -22,7 +22,7 @@ public class Configuration {
         return propertyValue != null ? Long.parseLong(propertyValue) : defaultValue;
     }
 
-    public String getStringProperty(String paramName, String defaultValue) {
+    String getStringProperty(String paramName, String defaultValue) {
         return properties.getProperty(paramName, defaultValue);
     }
 }
