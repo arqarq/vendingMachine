@@ -24,10 +24,10 @@ public class VendingMachine {
         char letter = 'A';
         for (Tray[] tray : trays) {
             for (int i = 0; i < tray.length; i++) {
-                tray[i] = new Tray(letter + String.valueOf(i + 1));
-//                System.out.print(tray[i] + " ");
+//                tray[i] = new Tray(letter + String.valueOf(i + 1));
+                String symbol = letter + String.valueOf(i);
+                tray[i] = Tray.builder(symbol).build();
             }
-//            System.out.println();
             letter++;
         }
     }
