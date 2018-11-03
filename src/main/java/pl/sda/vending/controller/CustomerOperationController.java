@@ -1,6 +1,9 @@
 package pl.sda.vending.controller;
 
+import pl.sda.vending.model.Tray;
 import pl.sda.vending.model.VendingMachine;
+
+import java.util.Optional;
 
 public class CustomerOperationController {
     private final VendingMachine machine;
@@ -31,9 +34,12 @@ public class CustomerOperationController {
     }
 
     private void printSymbol(int rowNo, int colNo) {
-        char symbolLetter = (char) ('A' + rowNo);
-        int symbolNumber = colNo + 1;
-        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
+        Optional<Tray> tray = machine.getTrayAtPosition(rowNo, colNo);
+        String traySymbol = tray.map(Tray::getSymbol).orElse("--");
+//        char symbolLetter = (char) ('A' + rowNo);
+//        int symbolNumber = colNo + 1;
+//        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
+        System.out.print("|   " + traySymbol + "   |");
     }
 
     private void printLowerBoundary(int rowNo, int colNo) {

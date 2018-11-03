@@ -1,7 +1,6 @@
 package pl.sda.vending.model;
 
 import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pl.sda.vending.util.Configuration;
@@ -9,9 +8,7 @@ import pl.sda.vending.util.Configuration;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class VendingMachineTest {
