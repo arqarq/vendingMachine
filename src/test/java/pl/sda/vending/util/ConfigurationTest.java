@@ -47,7 +47,7 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void shouldReturnExistingLongValue() {
+    public void shouldReturnKnownLongValue() {
         // Given
         String propertyName = "test.property.long";
         Long expectedLongValue = 7L;
@@ -55,5 +55,13 @@ public class ConfigurationTest {
         Long propertyValue = testedConfig.getLongProperty(propertyName, 12L);
         // Then
         assertEquals(expectedLongValue, propertyValue);
+    }
+
+    @Test(expected = Exception.class)
+    public void shouldGetException() throws Exception {
+        // Given
+        throw new Exception("wyj");
+        // When
+        // Then
     }
 }

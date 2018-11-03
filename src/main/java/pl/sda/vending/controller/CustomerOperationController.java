@@ -3,10 +3,10 @@ package pl.sda.vending.controller;
 import pl.sda.vending.model.VendingMachine;
 
 public class CustomerOperationController {
-    private VendingMachine machine;
+    private final VendingMachine machine;
 
-    public CustomerOperationController() {
-        machine = new VendingMachine();
+    public CustomerOperationController(VendingMachine machine) {
+        this.machine = machine;
     }
 
     public void printMachine() {
@@ -33,7 +33,8 @@ public class CustomerOperationController {
     private void printSymbol(int rowNo, int colNo) {
         char symbolLetter = (char) ('A' + rowNo);
         int symbolNumber = colNo + 1;
-        System.out.print("|   " + symbolLetter + symbolNumber + "   |");    }
+        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
+    }
 
     private void printLowerBoundary(int rowNo, int colNo) {
         System.out.print("+--------+");
