@@ -1,6 +1,7 @@
 package pl.sda.vending.model;
 
 import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pl.sda.vending.util.Configuration;
@@ -70,5 +71,18 @@ public class VendingMachineTest {
         // When
         new VendingMachine(config);
         // Then
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    @Parameters({"0, 4", "6,0", "27|4", "6| 10"})
+    public void shouldDoAllTestsWithParameters(Long rows, Long cols) {
+        // Given
+        Configuration config = mock(Configuration.class);
+        doReturn(rows).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
+        doReturn(cols).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        // When
+        new VendingMachine(config);
+        // Then
+        fail("Exception should be raised");
     }
 }
