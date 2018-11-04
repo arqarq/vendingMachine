@@ -22,6 +22,7 @@ public class TrayTest {
         assertEquals(definedProduct, boughtProduct.get());
     }
     // dalsze testy napisac
+    // dalsze testy napisac
 
 
 }
