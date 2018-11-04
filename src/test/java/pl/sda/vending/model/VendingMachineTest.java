@@ -62,12 +62,13 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void shouldGiveNoException() {
+    @Parameters({"6, 4", "26, 9"})
+    public void shouldGiveNoException(Long rows, Long cols) {
         // Given
         Configuration config = mock(Configuration.class);
 //        doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
-        when(config.getLongProperty(eq("machine.size.rows"), anyLong())).thenReturn(6L);
-        doReturn(4L).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        when(config.getLongProperty(eq("machine.size.rows"), anyLong())).thenReturn(rows);
+        doReturn(cols).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
         // When
         new VendingMachine(config);
         // Then
