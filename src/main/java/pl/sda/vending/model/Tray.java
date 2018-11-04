@@ -1,6 +1,7 @@
 package pl.sda.vending.model;
 
 import java.util.ArrayDeque;
+import java.util.Optional;
 import java.util.Queue;
 
 public class Tray {
@@ -26,9 +27,25 @@ public class Tray {
         return price;
     }
 
+    public Optional<String> firstProductName() {
+//        if (products.peek() != null) {
+//              Product firstProduct = products.peek();
+//              String name = firstProduct.getName();
+//              return Optional.ofNullable(name);
+//        } else {
+//          return Optional.empty();
+//        }
+        return Optional.ofNullable(products.peek()).map(Product::getName);
+//        return null;
+    }
+
     @Override
     public String toString() {
         return symbol + ' ';
+    }
+
+    public Optional<Product> buyProduct() {
+        return Optional.ofNullable(products.poll());
     }
 
     public static class Builder {

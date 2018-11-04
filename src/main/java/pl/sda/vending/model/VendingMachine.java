@@ -158,4 +158,45 @@ public class VendingMachine {
 //        return configuration.getLongProperty("machine.size.cols", 4L);
         return colsCount;
     }
+
+/*    public Optional<String> productNameAtPosition(Integer rowNo, Integer colNumber){
+        // pobrac z tablicy dwuwymiarowej odpowiednia tacke
+        // nazwa pierwszego produktu
+        // zwroc optionala
+        Tray tray = trays[rowNo][colNumber];
+        if (tray != null){
+            return tray.firstProductName();
+        } else {
+            return Optional.empty();
+        }
+    }*/
+
+    public Optional<String> productNameAtPosition(Integer rowNo, Integer colNo) {
+        Optional<Tray> tray = getTrayAtPosition(rowNo, colNo);
+        if (tray.isPresent()) {
+            return tray.get().firstProductName();
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<Product> buyProductWithSymbol(String traySymbol) {
+        if (traySymbol.length() == 2) {
+            return Optional.empty();
+        }
+        char first = traySymbol.toUpperCase().charAt(0);
+        char second = traySymbol.charAt(1);
+        int rowNo = first - 'A';
+        int colNo = second - '1';
+
+        if (rowNo < 0 || rowNo >= rowsCount || colNo < 0 || colNo >= colsCount ) {
+            return Optional.empty();
+        }
+        Tray tray = trays[rowNo][colNo];
+        if (tray == null) {
+            return Optional.empty();
+        } else {
+            return tray.buyProduct();
+        }
+    }
 }
