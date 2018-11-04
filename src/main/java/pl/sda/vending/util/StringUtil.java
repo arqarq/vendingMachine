@@ -44,7 +44,7 @@ public class StringUtil {
         return expandedText.substring(0, expectedLength);
     }
 
-    public static String formatMoney_(Long amount) {
+    public static String formatMoney(Long amount) {
         StringBuilder amountAsSB = new StringBuilder();
         Long centsAmount = amount % 100;
         Long dolarsAmount = amount / 100;
@@ -85,7 +85,7 @@ public class StringUtil {
         return amountAsSB.reverse().toString().trim();
     }
 
-    public static String formatMoney(Long amount) {
+    public static String formatMoney_(Long amount) {
         return formatMoneyIntegrals(amount)
                 + ","
                 + formatMoneyDecimals(amount);
