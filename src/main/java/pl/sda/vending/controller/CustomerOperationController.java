@@ -55,7 +55,13 @@ public class CustomerOperationController {
 //        char symbolLetter = (char) ('A' + rowNo);
 //        int symbolNumber = colNo + 1;
 //        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
-        System.out.print("|" + StringUtil.adjustText_(traySymbol, trayWidth) + "|");
+        System.out.print("|" + StringUtil.adjustText(traySymbol, trayWidth) + "|");
+    }
+
+    private void printName(int rowNo, int colNo) {
+        Optional<String> productName = machine.productNameAtPosition(rowNo, colNo);
+        String formattedName = productName.orElse("--");
+        System.out.print("|" + StringUtil.adjustText(formattedName, trayWidth) + "|");
     }
 
     private void printPrice(int rowNo, int colNo) {
@@ -65,7 +71,7 @@ public class CustomerOperationController {
 //        char symbolLetter = (char) ('A' + rowNo);
 //        int symbolNumber = colNo + 1;
 //        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
-        System.out.print("|" + StringUtil.adjustText_(formattedMoney, trayWidth) + "|");
+        System.out.print("|" + StringUtil.adjustText(formattedMoney, trayWidth) + "|");
     }
 
 /*  private void printProductNameAtPosition_(int rowNo, int colNo) {
@@ -74,17 +80,11 @@ public class CustomerOperationController {
 //        char symbolLetter = (char) ('A' + rowNo);
 //        int symbolNumber = colNo + 1;
 //        System.out.print("|   " + symbolLetter + symbolNumber + "   |");
-        System.out.print("|" + StringUtil.adjustText_(trayProduct, trayWidth) + "|");
+        System.out.print("|" + StringUtil.adjustText(trayProduct, trayWidth) + "|");
     }*/
 
     private void printLowerBoundary(int rowNo, int colNo) {
         System.out.print("+" + StringUtil.duplicateText("-", trayWidth) + "+");
 //        System.out.print("+--------+");
-    }
-
-    private void printName(int rowNo, int colNo) {
-        Optional<String> productName = machine.productNameAtPosition(rowNo, colNo);
-        String formattedName = productName.orElse("--");
-        System.out.print("|" + StringUtil.adjustText_(formattedName, trayWidth) + "|");
     }
 }

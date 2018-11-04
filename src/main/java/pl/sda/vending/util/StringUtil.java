@@ -1,7 +1,7 @@
 package pl.sda.vending.util;
 
 public class StringUtil {
-    public static String duplicateText(String text, Integer count){
+    public static String duplicateText(String text, Integer count) {
         StringBuilder duplicatedText = new StringBuilder();
         for (int i = 0; i < count; i++) {
             duplicatedText.append(text);
@@ -11,33 +11,29 @@ public class StringUtil {
 
     public static String adjustText(String text, Integer length) {
         StringBuilder sb = new StringBuilder();
-        String temp = text;
+        final int middle = (length - text.length()) / 2;
 
         if (text.length() == length) {
             return text;
         } else if (text.length() > length) {
-            temp = text.substring(0, length);
+            return text.substring(0, length);
+        } else {
+            if (length % 2 == 0) {
+                if (text.length() % 2 == 0) { // parz, parz
+                    sb.append(duplicateText(" ", middle));
+                } else { // nieparz, parz
+                    sb.append(duplicateText(" ", middle + 1));
+                }
+            } else {
+                if (text.length() % 2 == 0) { // parz, nieparz
+                    sb.append(duplicateText(" ", middle + 1));
+                } else { // nieparz, nieparz
+                    sb.append(duplicateText(" ", middle));
+                }
+            }
+            sb.append(text).append(duplicateText(" ", middle));
+            return sb.toString();
         }
-
-        if (length % 2 == 0 && text.length() % 2 == 0) // parz
-        {
-            for (int i = 0; i < text.length() / 2; i++) {
-                sb.append(" ");
-            }
-            sb.append(temp);
-            for (int i = 0; i < text.length() / 2; i++) {
-                sb.append(" ");
-            }
-        } else if (length % 2 == 0 && text.length() % 2 != 0) { // nieparz
-            for (int i = 0; i < length / 2 - text.length() / 2; i++) {
-                sb.append(" ");
-            }
-            sb.append(temp);
-            for (int i = 0; i < length / 2 - text.length() / 2 - 1; i++) {
-                sb.append(" ");
-            }
-        }
-        return sb.toString();
     }
 
     public static String adjustText_(String text, Integer expectedLength) {
@@ -98,12 +94,13 @@ public class StringUtil {
     private static String formatMoneyIntegrals(Long amount) {
         String integrals = Long.toString(amount / 100);
         StringBuilder formattedMoney = new StringBuilder();
-        Integer charactersTillLastSpace = 0;
+        int charactersTillLastSpace = 0;
+
         for (int charIndex = integrals.length() - 1; charIndex >= 0; charIndex--) {
             charactersTillLastSpace++;
-            formattedMoney = formattedMoney.append(integrals.charAt(charIndex));
-            if (charactersTillLastSpace >= 3) {
-                formattedMoney = formattedMoney.append(" ");
+            formattedMoney.append(integrals.charAt(charIndex));
+            if (charactersTillLastSpace == 3) {
+                formattedMoney.append(" ");
                 charactersTillLastSpace = 0;
             }
         }
