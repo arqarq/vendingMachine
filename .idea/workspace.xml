@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <list default="true" id="97eec902-8499-46d7-b707-9126e8b36615" name="Default Changelist" comment="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="97eec902-8499-46d7-b707-9126e8b36615" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
 =======
     <list default="true" id="97eec902-8499-46d7-b707-9126e8b36615" name="Default Changelist" comment="" />
 >>>>>>> Stashed changes
@@ -36,7 +40,7 @@
     <session id="-2045684041">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="2" />
@@ -546,7 +550,11 @@
       </list>
     </option>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="JUnit.StringUtilTest">
+=======
+  <component name="RunManager" selected="JUnit.TrayTest">
+>>>>>>> Stashed changes
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.sda.vending.Main" />
       <module name="vendingMachine" />
@@ -625,6 +633,11 @@
     </list>
     <recent_temporary>
       <list>
+<<<<<<< Updated upstream
+=======
+        <item itemvalue="JUnit.TrayTest" />
+        <item itemvalue="Application.Main" />
+>>>>>>> Stashed changes
         <item itemvalue="JUnit.StringUtilTest" />
 <<<<<<< Updated upstream
 =======
@@ -633,7 +646,6 @@
 >>>>>>> Stashed changes
         <item itemvalue="JUnit.VendingMachineTest" />
         <item itemvalue="JUnit.ConfigurationTest" />
-        <item itemvalue="JUnit.TrayTest" />
       </list>
     </recent_temporary>
   </component>
@@ -677,6 +689,7 @@
       <updated>1541367027580</updated>
     </task>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
@@ -702,6 +715,19 @@
       <configuration name="StringUtilTest" configurationId="JUnit" />
 >>>>>>> Stashed changes
     </history-entry>
+=======
+    <task id="LOCAL-00005" summary="- removing workspace.xml from repo">
+      <created>1541371249173</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1541371249173</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+>>>>>>> Stashed changes
     <history-entry file="TrayTest - 2018.11.04 at 21h 33m 09s.xml">
       <configuration name="TrayTest" configurationId="JUnit" />
     </history-entry>
@@ -729,8 +755,13 @@
     <history-entry file="StringUtilTest - 2018.11.04 at 22h 25m 38s.xml">
       <configuration name="StringUtilTest" configurationId="JUnit" />
     </history-entry>
+<<<<<<< Updated upstream
     <history-entry file="StringUtilTest - 2018.11.04 at 23h 33m 20s.xml">
       <configuration name="StringUtilTest" configurationId="JUnit" />
+=======
+    <history-entry file="TrayTest - 2018.11.04 at 23h 41m 41s.xml">
+      <configuration name="TrayTest" configurationId="JUnit" />
+>>>>>>> Stashed changes
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -738,12 +769,16 @@
     <frame x="100" y="115" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
+<<<<<<< Updated upstream
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
 =======
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28214827" />
+>>>>>>> Stashed changes
+=======
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
 >>>>>>> Stashed changes
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
@@ -812,7 +847,12 @@
     <MESSAGE value="- added workspace.xml, to get workspace also on other machines" />
 <<<<<<< Updated upstream
     <MESSAGE value="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java" />
+<<<<<<< Updated upstream
     <option name="LAST_COMMIT_MESSAGE" value="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java" />
+=======
+    <MESSAGE value="- removing workspace.xml from repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="- removing workspace.xml from repo" />
+>>>>>>> Stashed changes
 =======
     <MESSAGE value="- removing workspace.xml from repo" />
     <option name="LAST_COMMIT_MESSAGE" value="- removing workspace.xml from repo" />
