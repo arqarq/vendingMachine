@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="97eec902-8499-46d7-b707-9126e8b36615" name="Default Changelist" comment="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="97eec902-8499-46d7-b707-9126e8b36615" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,6 +80,48 @@
         </counts>
       </usages-collector>
     </session>
+<<<<<<< Updated upstream
+=======
+    <session id="-359012106">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="gitignore" value="3" />
+          <entry key="java" value="5" />
+          <entry key="properties" value="1" />
+          <entry key="xml" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="5" />
+          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="Properties" value="1" />
+          <entry key="XML" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="gitignore" value="1" />
+          <entry key="java" value="18" />
+          <entry key="txt" value="55" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="18" />
+          <entry key="PLAIN_TEXT" value="56" />
+        </counts>
+      </usages-collector>
+    </session>
+>>>>>>> Stashed changes
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -141,7 +187,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/pl/sda/vending/model/TrayTest.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="340">
+=======
+            <state relative-caret-position="425">
+>>>>>>> Stashed changes
               <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
             </state>
           </provider>
@@ -198,8 +248,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="100" />
     <option name="y" value="115" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -338,6 +388,17 @@
               <item name="sda" type="462c0819:PsiDirectoryNode" />
               <item name="vending" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="VendingMachine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vendingMachine" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pl" type="462c0819:PsiDirectoryNode" />
+              <item name="sda" type="462c0819:PsiDirectoryNode" />
+              <item name="vending" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -485,7 +546,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.StringUtilTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="pl.sda.vending.Main" />
       <module name="vendingMachine" />
@@ -564,8 +625,12 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.StringUtilTest" />
+<<<<<<< Updated upstream
+=======
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.TrayTest" />
+>>>>>>> Stashed changes
         <item itemvalue="JUnit.VendingMachineTest" />
         <item itemvalue="JUnit.ConfigurationTest" />
         <item itemvalue="JUnit.TrayTest" />
@@ -611,12 +676,31 @@
       <option name="project" value="LOCAL" />
       <updated>1541367027580</updated>
     </task>
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
     <history-entry file="ConfigurationTest - 2018.11.04 at 21h 33m 02s.xml">
       <configuration name="ConfigurationTest" configurationId="JUnit" />
+=======
+    <task id="LOCAL-00006" summary="- removing workspace.xml from repo">
+      <created>1541370692787</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1541370692787</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="StringUtilTest - 2018.11.04 at 23h 07m 12s.xml">
+      <configuration name="StringUtilTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="StringUtilTest - 2018.11.04 at 23h 09m 38s.xml">
+      <configuration name="StringUtilTest" configurationId="JUnit" />
+>>>>>>> Stashed changes
     </history-entry>
     <history-entry file="TrayTest - 2018.11.04 at 21h 33m 09s.xml">
       <configuration name="TrayTest" configurationId="JUnit" />
@@ -645,12 +729,22 @@
     <history-entry file="StringUtilTest - 2018.11.04 at 22h 25m 38s.xml">
       <configuration name="StringUtilTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="StringUtilTest - 2018.11.04 at 23h 33m 20s.xml">
+      <configuration name="StringUtilTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
     <frame x="100" y="115" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26865673" />
+=======
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28214827" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -664,7 +758,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< Updated upstream
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32988507" />
+=======
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32850242" />
+>>>>>>> Stashed changes
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32988507" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32988507" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32988507" />
@@ -712,8 +810,13 @@
     <MESSAGE value="- added sample test with parameters" />
     <MESSAGE value="- added sample test with parameters farther" />
     <MESSAGE value="- added workspace.xml, to get workspace also on other machines" />
+<<<<<<< Updated upstream
     <MESSAGE value="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java" />
     <option name="LAST_COMMIT_MESSAGE" value="- Tray.java: remove toString();&#10;- clarify 3 generateTrayAtPosition() method variants in VendingMachine.java" />
+=======
+    <MESSAGE value="- removing workspace.xml from repo" />
+    <option name="LAST_COMMIT_MESSAGE" value="- removing workspace.xml from repo" />
+>>>>>>> Stashed changes
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -789,8 +892,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/pl/sda/vending/util/StringUtilTest.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="306">
           <caret line="23" selection-start-line="23" selection-end-line="23" />
+=======
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+            <element signature="e#453#454#0" expanded="true" />
+            <element signature="e#486#487#0" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -830,10 +944,31 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/vending/model/Tray.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/vending/util/StringUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1989">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="647">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/pl/sda/vending/util/StringUtilTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#414#415#0" expanded="true" />
@@ -846,16 +981,30 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/pl/sda/vending/model/Tray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/pl/sda/vending/model/TrayTest.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="340">
+=======
+        <state relative-caret-position="425">
+>>>>>>> Stashed changes
           <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
         </state>
       </provider>
