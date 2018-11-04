@@ -22,6 +22,11 @@ public class Configuration {
         return propertyValue != null ? Long.parseLong(propertyValue) : defaultValue;
     }
 
+    public Integer getIntProperty(String paramName, Integer defaultValue) {
+        final String propertyValue = properties.getProperty(paramName);
+        return propertyValue != null ? Integer.parseInt(propertyValue) : defaultValue;
+    }
+
     String getStringProperty(String paramName, String defaultValue) {
         return properties.getProperty(paramName, defaultValue);
     }

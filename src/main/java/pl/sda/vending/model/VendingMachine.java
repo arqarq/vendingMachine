@@ -9,12 +9,14 @@ public class VendingMachine {
     private final Configuration configuration;
     private final Long rowsCount;
     private final Long colsCount;
+    private final Integer trayWidth;
     private final Tray[][] trays;
 
     public VendingMachine(Configuration configuration) {
         this.configuration = configuration;
         rowsCount = configuration.getLongProperty("machine.size.rows", 6L);
         colsCount = configuration.getLongProperty("machine.size.cols", 4L);
+        trayWidth = configuration.getIntProperty("machine.display.trayWidth", 12);
         if (rowsCount <= 0 || rowsCount > 26) {
             throw new IllegalArgumentException("Row count " + rowsCount + " is invalid");
         }
@@ -159,6 +161,10 @@ public class VendingMachine {
         return colsCount;
     }
 
+    public Integer trayWidth() {
+        return trayWidth;
+    }
+
 /*    public Optional<String> productNameAtPosition(Integer rowNo, Integer colNumber){
         // pobrac z tablicy dwuwymiarowej odpowiednia tacke
         // nazwa pierwszego produktu
@@ -189,7 +195,7 @@ public class VendingMachine {
         int rowNo = first - 'A';
         int colNo = second - '1';
 
-        if (rowNo < 0 || rowNo >= rowsCount || colNo < 0 || colNo >= colsCount ) {
+        if (rowNo < 0 || rowNo >= rowsCount || colNo < 0 || colNo >= colsCount) {
             return Optional.empty();
         }
         Tray tray = trays[rowNo][colNo];

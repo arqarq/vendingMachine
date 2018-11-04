@@ -41,7 +41,7 @@ public class Main {
         } catch (NumberFormatException e) {
             return null;
         }
-        return null;
+        return null; ///
     }
 
     private void printMenu() {

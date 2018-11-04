@@ -9,10 +9,11 @@ import java.util.Optional;
 
 public class CustomerOperationController {
     private final VendingMachine machine;
-    private final Integer trayWidth = 12; // do properties
+    private final Integer trayWidth; // do properties
 
     public CustomerOperationController(VendingMachine machine) {
         this.machine = machine;
+        this.trayWidth = machine.trayWidth();
     }
 
     public void printMachine() {
@@ -86,6 +87,4 @@ public class CustomerOperationController {
         String formattedName = productName.orElse("--");
         System.out.print("|" + StringUtil.adjustText_(formattedName, trayWidth) + "|");
     }
-
-
 }
