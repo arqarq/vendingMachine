@@ -43,31 +43,32 @@ public class VendingMachine {
 
         for (int rowNo = 0; rowNo < rowsCount; rowNo++) {
             for (int colNo = 0; colNo < colsCount; colNo++) {
-                char letter = (char) ('A' + rowNo);
-                int number = colNo + 1;
-                String symbol = "" + letter + number;
-
-                Long priceRandom = (long) (random.nextInt(901) + 100);
-
-                Product product;
-                Product product1;
-                Tray tray;
-
                 if (random.nextInt(10) < 8) {
-                    int temp = random.nextInt(10);
-                    product = new Product("Product " + symbol);
-                    if (temp < 1) {
-                        product1 = new Product("Product " + symbol);
-                        tray = Tray.builder(symbol).price(priceRandom).product(product).product(product1).build();
-                    } else if (temp < 5) {
-                        tray = Tray.builder(symbol).price(priceRandom).product(product).build();
-                    } else {
-                        tray = Tray.builder(symbol).price(priceRandom).build();
-                    }
-                    trays[rowNo][colNo] = tray;
+//                if (Math.random() < 0.8) { // another way to generate probability 0.8
+                    generateTrayAtPosition(rowNo, colNo);
                 }
             }
         }
+    }
+
+    private void generateTrayAtPosition(int rowNo, int colNo) {
+        Random random = new Random();
+        int temp = random.nextInt(10);
+
+        char letter = (char) ('A' + rowNo);
+        int number = colNo + 1;
+        String symbol = "" + letter + number;
+
+        Long priceRandom = (long) (random.nextInt(901) + 100);
+
+        Tray.Builder trayBuilder = Tray.builder(symbol).price(priceRandom);
+        if (temp < 1) {
+            trayBuilder.product(new Product("Product " + symbol));
+        }
+        if (temp < 5) {
+            trayBuilder.product(new Product("Product " + symbol));
+        }
+        trays[rowNo][colNo] = trayBuilder.build();
     }
 
     /*
@@ -77,7 +78,7 @@ public class VendingMachine {
     Prawdopodobieństwo, że tacka posiada 2 produkty wynosi 0,1.
     Niech nazwą produktu będzie "Product <Symbol Tacki>"
     */
-    private void generateTrayAtPosition(int rowNo, int colNo) {
+    private void generateTrayAtPosition_(int rowNo, int colNo) {
         Random random = new Random();
         long price = random.nextInt(901) + 100;
         char letter = (char) ('A' + rowNo);
@@ -110,7 +111,7 @@ public class VendingMachine {
     }
 
     /*inny sposób*/
-    private void generateTrayAtPosition_(int rowNo, int colNo) {
+    private void generateTrayAtPosition__(int rowNo, int colNo) {
         Random random = new Random();
         long price = random.nextInt(901) + 100;
         char letter = (char) ('A' + rowNo);

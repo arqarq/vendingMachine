@@ -39,11 +39,6 @@ public class Tray {
 //        return null;
     }
 
-    @Override
-    public String toString() {
-        return symbol + ' ';
-    }
-
     public Optional<Product> buyProduct() {
         return Optional.ofNullable(products.poll());
     }
