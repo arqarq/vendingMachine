@@ -39,7 +39,8 @@ public class StringUtil {
     public static String adjustText_(String text, Integer expectedLength) {
         String expandedText = text;
         while (expandedText.length() < expectedLength) {
-            expandedText = " " + expandedText + " ";
+//            expandedText = String.join("", " ", expandedText, " ");
+            expandedText = " ".concat(expandedText).concat(" ");
         }
         return expandedText.substring(0, expectedLength);
     }
