@@ -88,8 +88,8 @@ public class StringUtil {
 
     public static String formatMoney_(Long amount) {
         return formatMoneyIntegrals(amount)
-                + ","
-                + formatMoneyDecimals(amount);
+                .concat(",")
+                .concat(formatMoneyDecimals(amount));
     }
 
     private static String formatMoneyIntegrals(Long amount) {
