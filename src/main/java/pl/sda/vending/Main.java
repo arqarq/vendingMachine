@@ -29,10 +29,11 @@ public class Main {
                         String traySymbol = new Scanner(System.in).nextLine().toUpperCase();
                         Optional<Product> productBought = customerOperationController.buyProductForSymbol(traySymbol);
                         if (productBought.isPresent()) {
-                            System.out.println("Success, you bought: " + productBought.get().getName());
+                            System.out.println("   Success, you bought: " + productBought.get().getName());
                         } else {
-                            System.out.println("Product N/A");
+                            System.out.println("   Product N/A");
                         }
+                        System.out.println();
                         // 1. pobrac od uzytkownika symbol tacki
                         // 2. wywolac odpowiednia metode z kontrolera
                         //    Optional buyProductForSymbol(String traySymbol)

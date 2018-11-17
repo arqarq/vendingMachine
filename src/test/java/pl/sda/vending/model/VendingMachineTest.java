@@ -6,7 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import pl.sda.vending.util.Configuration;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
@@ -85,5 +85,52 @@ public class VendingMachineTest {
         new VendingMachine(config);
         // Then
         fail("Exception should be raised");
+    }
+
+    @Test
+    public void shouldBeAbleToAddTrayToEmptySpot() {
+        // Given
+        Tray tray = Tray.builder("A2").build();
+        Configuration config = mock(Configuration.class);
+        doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
+        doReturn(4L).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        VendingMachine testedMachine = new VendingMachine(config);
+        // When
+        boolean placed = testedMachine.placeTray(tray);
+        // Then
+        assertTrue(placed);
+        assertEquals(tray, testedMachine.getTrayAtPosition(0, 1).get());
+    }
+
+    @Test
+    public void shouldNotBeAbleToAddTrayToTakenSpot() {
+        // Given
+        Tray tray = Tray.builder("A2").build();
+        Tray secondTray = Tray.builder("A2").build();
+        Configuration config = mock(Configuration.class);
+        doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
+        doReturn(4L).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        VendingMachine testedMachine = new VendingMachine(config);
+        // When
+        boolean firstTrayPlacementResult = testedMachine.placeTray(tray);
+        boolean secondTrayPlacementResult = testedMachine.placeTray(secondTray);
+        // Then
+        assertTrue(firstTrayPlacementResult);
+        assertFalse(secondTrayPlacementResult);
+        assertEquals(tray, testedMachine.getTrayAtPosition(0, 1).get());
+    }
+
+    @Test
+    public void shouldNotBeAbleToAddTrayToNoExistingPosition() {
+        // Given
+        Tray tray = Tray.builder("$$").build();
+        Configuration config = mock(Configuration.class);
+        doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
+        doReturn(4L).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        VendingMachine testedMachine = new VendingMachine(config);
+        // When
+        boolean placed = testedMachine.placeTray(tray);
+        // Then
+        assertFalse(placed);
     }
 }

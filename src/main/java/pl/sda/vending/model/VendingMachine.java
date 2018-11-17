@@ -39,16 +39,42 @@ public class VendingMachine {
             letter++;
         }*/
 
-        Random random = new Random();
+        //usuniecie generacji tacek
+//        Random random = new Random();
+//
+//        for (int rowNo = 0; rowNo < rowsCount; rowNo++) {
+//            for (int colNo = 0; colNo < colsCount; colNo++) {
+//                if (random.nextInt(10) < 8) {
+////                if (Math.random() < 0.8) { // another way to generate probability 0.8
+//                    generateTrayAtPosition(rowNo, colNo);
+//                }
+//            }
+//        }
+    }
 
-        for (int rowNo = 0; rowNo < rowsCount; rowNo++) {
-            for (int colNo = 0; colNo < colsCount; colNo++) {
-                if (random.nextInt(10) < 8) {
-//                if (Math.random() < 0.8) { // another way to generate probability 0.8
-                    generateTrayAtPosition(rowNo, colNo);
-                }
-            }
+    boolean placeTray(Tray tray) {
+        String symbol = tray.getSymbol();
+
+        if (symbol.length() != 2) {
+            return false;
         }
+        char first = symbol.toUpperCase().charAt(0);
+        char second = symbol.charAt(1);
+        int rowNo = first - 'A';
+        int colNo = second - '1';
+        if (rowNo < 0 || rowNo >= rowsCount || colNo < 0 || colNo >= colsCount) {
+            return false;
+        }
+        if (!getTrayAtPosition(rowNo, colNo).isPresent()) {
+            trays[rowNo][colNo] = tray;
+            return true;
+        }
+        return false;
+//        if (trays[rowNo][colNo] == null) {
+//            trays[rowNo][colNo] = tray;
+//            return true;
+//        }
+//        return false;
     }
 
     private void generateTrayAtPosition(int rowNo, int colNo) {
@@ -205,5 +231,16 @@ public class VendingMachine {
         } else {
             return tray.buyProduct();
         }
+    }
+
+    public boolean placeTray_(Tray tray) {
+        String symbol = tray.getSymbol();
+        int rowNo = symbol.charAt(0) - 'A';
+        int colNo = symbol.charAt(1) - '1';
+        if (trays[rowNo][colNo] == null) {
+            trays[rowNo][colNo] = tray;
+            return true;
+        }
+        return false;
     }
 }
