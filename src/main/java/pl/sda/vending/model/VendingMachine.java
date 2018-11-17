@@ -2,18 +2,20 @@ package pl.sda.vending.model;
 
 import pl.sda.vending.util.Configuration;
 
+import java.io.Serializable;
 import java.util.Optional;
 import java.util.Random;
 
-public class VendingMachine {
-    private final Configuration configuration;
+public class VendingMachine implements Serializable {
+    public static final long serialVersionUID = 1L;
+    //    private final Configuration configuration;
     private final Long rowsCount;
     private final Long colsCount;
     private final Integer trayWidth;
     private final Tray[][] trays;
 
     public VendingMachine(Configuration configuration) {
-        this.configuration = configuration;
+//        this.configuration = configuration;
         rowsCount = configuration.getLongProperty("machine.size.rows", 6L);
         colsCount = configuration.getLongProperty("machine.size.cols", 4L);
         trayWidth = configuration.getIntProperty("machine.display.trayWidth", 12);

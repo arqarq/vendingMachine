@@ -1,10 +1,12 @@
 package pl.sda.vending.model;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Optional;
 import java.util.Queue;
 
-public class Tray {
+public class Tray implements Serializable {
+    public static final long serialVersionUID = 1L;
     private String symbol;
     private Long price;
     private Queue<Product> products;

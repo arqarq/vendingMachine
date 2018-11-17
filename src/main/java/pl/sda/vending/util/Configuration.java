@@ -27,7 +27,7 @@ public class Configuration {
         return propertyValue != null ? Integer.parseInt(propertyValue) : defaultValue;
     }
 
-    String getStringProperty(String paramName, String defaultValue) {
+    public String getStringProperty(String paramName, String defaultValue) {
         return properties.getProperty(paramName, defaultValue);
     }
 }
