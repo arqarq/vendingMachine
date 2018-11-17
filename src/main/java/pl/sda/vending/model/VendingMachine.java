@@ -188,7 +188,7 @@ public class VendingMachine {
     }
 
     public Optional<Product> buyProductWithSymbol(String traySymbol) {
-        if (traySymbol.length() == 2) {
+        if (traySymbol.length() != 2) {
             return Optional.empty();
         }
         char first = traySymbol.toUpperCase().charAt(0);
