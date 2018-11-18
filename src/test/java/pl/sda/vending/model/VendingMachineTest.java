@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import pl.sda.vending.util.Configuration;
 
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.eq;
@@ -132,5 +134,59 @@ public class VendingMachineTest {
         boolean placed = testedMachine.placeTray(tray);
         // Then
         assertFalse(placed);
+    }
+
+    @Test
+    public void shouldReturnEmptyOptionalIfTrayCouldNotBeRemoved() {
+        // Given
+        String traySymbol = "A1";
+        Configuration mockedConfig = getMockedConfiguration();
+        VendingMachine testedMachine = new VendingMachine(mockedConfig);
+        // When
+        Optional<Tray> removedTray = testedMachine.removeTrayWithSymbol(traySymbol);
+        // Then
+        assertFalse(removedTray.isPresent());
+    }
+
+    @Test
+    public void shouldBeAbleToRemoveTray() {
+        // Given
+        String traySymbol = "B1";
+        Configuration mockedConfig = getMockedConfiguration();
+        VendingMachine machine = new VendingMachine(mockedConfig);
+        Tray tray = Tray.builder(traySymbol).build();
+        machine.placeTray(tray);
+        // When
+        Optional<Tray> removedTray = machine.removeTrayWithSymbol(traySymbol);
+        // Then
+        assertTrue(removedTray.isPresent());
+        assertEquals(tray, removedTray.get());
+    }
+
+    @Test
+    public void removedTrayShouldNotBeAvailable() {
+        // Given
+        String traySymbol = "C4";
+        VendingMachine machine = new VendingMachine(getMockedConfiguration());
+        Tray tray = Tray.builder(traySymbol).build();
+        machine.placeTray(tray);
+        // When
+        machine.removeTrayWithSymbol(traySymbol);
+        Optional<Tray> obtainedTray = machine.getTrayAtPosition(2, 4);
+        // Then
+        assertFalse(obtainedTray.isPresent());
+        /*
+        strworzyc automat z jedna tacka
+        usunac tacke
+        SPRAWDZAMY: czy po usunieciu tacki, metoda
+        getTrayAtPosition zwraca pusta wartosc
+         */
+    }
+
+    private Configuration getMockedConfiguration() {
+        Configuration config = mock(Configuration.class);
+        doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
+        doReturn(4L).when(config).getLongProperty(eq("machine.size.cols"), anyLong());
+        return config;
     }
 }

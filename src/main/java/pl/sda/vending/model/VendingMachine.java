@@ -2,6 +2,7 @@ package pl.sda.vending.model;
 
 import pl.sda.vending.util.Configuration;
 
+import javax.swing.text.html.Option;
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.Random;
@@ -244,5 +245,20 @@ public class VendingMachine implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public Optional<Tray> removeTrayWithSymbol(String traySymbol) {
+        if (traySymbol.length() != 2) {
+            return Optional.empty();
+        }
+        char first = traySymbol.charAt(0);
+        char second = traySymbol.charAt(1);
+        int rowNo = first - 'A';
+        int colNo = second - '1';
+        Optional<Tray> tray = getTrayAtPosition(rowNo, colNo);
+        if (tray.isPresent()) {
+            trays[rowNo][colNo] = null;
+        }
+        return tray;
     }
 }
