@@ -54,7 +54,7 @@ public class VendingMachine implements Serializable {
 //        }
     }
 
-    boolean placeTray(Tray tray) {
+    public boolean placeTray(Tray tray) {
         String symbol = tray.getSymbol();
 
         if (symbol.length() != 2) {

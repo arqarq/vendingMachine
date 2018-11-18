@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum UserMenuSelection {
     BUY_PRODUCT(1, "Buy product"),
-    EXIT(9, "Exit");
+    EXIT(9, "Exit"),
+    SERVICE_MENU(0, "Service menu");
 
     private final Integer optionNumber;
     private final String optionText;
@@ -15,6 +16,13 @@ public enum UserMenuSelection {
     }
 
     public static UserMenuSelection selectionForOptionNumber(Integer requestedOptionNumber) {
+//        UserMenuSelection[] values = values();
+//        for (UserMenuSelection value : values) {
+//            if (value.getOptionNumber().equals(requestedOptionNumber)) {
+//                return value;
+//            }
+//        }
+//        throw new IllegalArgumentException("Unknown option number: " + requestedOptionNumber);
         return Arrays.stream(values())
                 .filter(x -> x.getOptionNumber().equals(requestedOptionNumber))
                 .findFirst()
