@@ -61,16 +61,16 @@ public class EmployeeOperationController {
     }
 
     private Integer getHowManyToAdd() {
-        Integer howMany = null;
-        while (howMany == null) {
-            System.out.print(" > Provide how many to add: ");
+        Integer quantity = null;
+        while (quantity == null) {
+            System.out.print(" > Provide product quantity: ");
             try {
-                howMany = Integer.parseInt(getUserInput());
+                quantity = Integer.parseInt(getUserInput());
             } catch (NumberFormatException e) {
-                System.out.println("   Invalid number of products to add. Try again.");
+                System.out.println("   Invalid products quantity. Try again.");
             }
         }
-        return howMany;
+        return quantity;
     }
 
     private String getUserInput() {
@@ -80,8 +80,8 @@ public class EmployeeOperationController {
     public void addProducts() {
         String traySymbol = getTraySymbolFromUser();
         String productName = getProductNameFromUser();
-        Integer howMany = getHowManyToAdd();
-        Optional<String> errorMessage = employeeService.addProduct(traySymbol, productName, howMany);
-        System.out.println(errorMessage.orElse("   Products has been added."));
+        Integer quantity = getHowManyToAdd();
+        Optional<String> errorMessage = employeeService.addProduct(traySymbol, productName, quantity);
+        System.out.println(errorMessage.orElse("   All products have been added."));
     }
 }
