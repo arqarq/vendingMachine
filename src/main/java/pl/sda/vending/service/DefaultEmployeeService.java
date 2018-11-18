@@ -32,4 +32,21 @@ public class DefaultEmployeeService implements EmployeeService {
         // if added then save
         // else return error message
     }
+
+    @Override
+    public Optional<String> removeTrayWithSymbol(String traySymbol) {
+        Optional<VendingMachine> loadedMachine = machineRepository.load();
+        if (loadedMachine.isPresent()) {
+            VendingMachine machine = loadedMachine.get();
+            Optional<Tray> removedTray = machine.removeTrayWithSymbol(traySymbol);
+            if (removedTray.isPresent()) {
+                machineRepository.save(machine);
+                return Optional.empty();
+            } else {
+                return Optional.of("Tray could not be removed.");
+            }
+        } else {
+            return Optional.of("There is no vending machine");
+        }
+    }
 }

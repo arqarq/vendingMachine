@@ -20,12 +20,21 @@ public class EmployeeOperationController {
                 .price(trayPrice)
                 .build();
         Optional<String> errorMessage = employeeService.addTray(newTray);
-        System.out.println(errorMessage.orElse("   Tray has beed added"));
+        System.out.println(errorMessage.orElse("   Tray has been added."));
         // ask for tray symbol
         // ask for tray price
         // build new tray
         // delegate tray save to service
         // Print confirmation or error
+    }
+
+    public void removeTray(){
+        // zapytac uzytkownika o symbol tacki do usuniecia
+        String traySymbol = getTraySymbolFromUser();
+        // wykonac odpowiednia metode w serwisie
+        Optional<String> errorMessage = employeeService.removeTrayWithSymbol(traySymbol);
+        // wyswietlamy blad lub potwierdzenie operacji
+        System.out.println(errorMessage.orElse("   Tray has been removed."));
     }
 
     private Long getTrayPriceFromUser() {

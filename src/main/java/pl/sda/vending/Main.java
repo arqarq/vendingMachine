@@ -105,6 +105,7 @@ public class Main {
 //                    System.out.println();
                         break;
                     case REMOVE_TRAY:
+                        employeeOperationController.removeTray();
                         break;
                     case ADD_PRODUCT:
                         break;
