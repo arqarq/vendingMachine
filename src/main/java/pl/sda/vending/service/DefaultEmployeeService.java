@@ -63,7 +63,12 @@ public class DefaultEmployeeService implements EmployeeService {
                     machineRepository.save(machine);
                     counter++;
                 } else {
-                    return Optional.of("   Not added " + (howManyToAdd - counter) + " products.");
+                    int leftProducts = howManyToAdd - counter;
+                    if (leftProducts == howManyToAdd) {
+                        return Optional.of("   There is no tray to add products - install tray.");
+                    } else {
+                        return Optional.of("   Not added " + leftProducts + " products.");
+                    }
                 }
             }
             return Optional.empty();
