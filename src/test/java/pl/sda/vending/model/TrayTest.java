@@ -3,6 +3,7 @@ package pl.sda.vending.model;
 import org.junit.Test;
 
 import java.util.Optional;
+import java.util.Properties;
 
 import static org.junit.Assert.*;
 
@@ -69,5 +70,20 @@ public class TrayTest {
         Optional<Product> boughtProduct = tray.buyProduct();
         // Then
         assertFalse(boughtProduct.isPresent());
+    }
+
+    @Test
+    public void shouldNotBeAbleToOverloadTray() {
+        // Given
+        Tray testedTray = Tray.builder("A1").build();
+        Product product = new Product("produkt testowy");
+        for (int productNumber = 0; productNumber < Tray.MAX_SIZE; productNumber++) {
+            testedTray.addProduct(product);
+        }
+        Product surplusProduct = new Product("Mleko");
+        // When
+        boolean success = testedTray.addProduct(surplusProduct);
+        // Then
+        assertFalse(success);
     }
 }

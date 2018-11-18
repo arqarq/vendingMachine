@@ -2,7 +2,6 @@ package pl.sda.vending.model;
 
 import pl.sda.vending.util.Configuration;
 
-import javax.swing.text.html.Option;
 import java.io.Serializable;
 import java.util.Optional;
 import java.util.Random;
@@ -79,6 +78,26 @@ public class VendingMachine implements Serializable {
 //        }
 //        return false;
     }
+
+    public boolean addProductToTray(String traySymbol, Product product) {
+        return getTrayForSymbol(traySymbol).map(tray -> tray.addProduct(product)).orElse(false);
+
+/*        if (traySymbol.length() != 2) {
+            return false;
+        }
+        char first = traySymbol.toUpperCase().charAt(0);
+        char second = traySymbol.charAt(1);
+        int rowNo = first - 'A';
+        int colNo = second - '1';
+//        if (rowNo < 0 || rowNo >= rowsCount || colNo < 0 || colNo >= colsCount) {
+//            return Optional.empty();
+//        }
+        if (trays[rowNo][colNo] != null) {
+            return trays[rowNo][colNo].addProduct(product);
+        } else {
+            return false;
+        }*/
+}
 
     private void generateTrayAtPosition(int rowNo, int colNo) {
         Random random = new Random();
@@ -260,5 +279,16 @@ public class VendingMachine implements Serializable {
             trays[rowNo][colNo] = null;
         }
         return tray;
+    }
+
+    private Optional<Tray> getTrayForSymbol(String traySymbol) {
+        if (traySymbol.length() != 2) {
+            return Optional.empty();
+        }
+        char first = traySymbol.charAt(0);
+        char second = traySymbol.charAt(1);
+        int rowNo = first - 'A';
+        int colNo = second - '1';
+        return getTrayAtPosition(rowNo, colNo);
     }
 }

@@ -108,6 +108,7 @@ public class Main {
                         employeeOperationController.removeTray();
                         break;
                     case ADD_PRODUCT:
+                        employeeOperationController.addProducts();
                         break;
                     case REMOVE_PRODUCT:
                         break;

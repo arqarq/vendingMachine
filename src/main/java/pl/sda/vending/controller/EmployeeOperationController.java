@@ -44,7 +44,7 @@ public class EmployeeOperationController {
             try {
                 price = Long.parseLong(getUserInput());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid price. Try again.");
+                System.out.println("   Invalid price. Try again.");
             }
         }
         return price;
@@ -55,7 +55,33 @@ public class EmployeeOperationController {
         return getUserInput().toUpperCase();
     }
 
+    private String getProductNameFromUser() {
+        System.out.print(" > Provide product name: ");
+        return getUserInput();
+    }
+
+    private Integer getHowManyToAdd() {
+        Integer howMany = null;
+        while (howMany == null) {
+            System.out.print(" > Provide how many to add: ");
+            try {
+                howMany = Integer.parseInt(getUserInput());
+            } catch (NumberFormatException e) {
+                System.out.println("   Invalid number of products to add. Try again.");
+            }
+        }
+        return howMany;
+    }
+
     private String getUserInput() {
         return new Scanner(System.in).nextLine();
+    }
+
+    public void addProducts() {
+        String traySymbol = getTraySymbolFromUser();
+        String productName = getProductNameFromUser();
+        Integer howMany = getHowManyToAdd();
+        Optional<String> errorMessage = employeeService.addProduct(traySymbol, productName, howMany);
+        System.out.println(errorMessage.orElse("   Products has been added."));
     }
 }
