@@ -26,7 +26,7 @@ public class DefaultEmployeeService implements EmployeeService {
             machineRepository.save(vendingMachine);
             return Optional.empty();
         }
-        return Optional.of("Could not add tray, check provided position");
+        return Optional.of("   Could not add tray, check provided position");
         // loading VendingMachine
         // add tray
         // check if added
