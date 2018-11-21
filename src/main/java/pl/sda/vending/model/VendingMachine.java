@@ -281,7 +281,7 @@ public class VendingMachine implements Serializable {
         return tray;
     }
 
-    private Optional<Tray> getTrayForSymbol(String traySymbol) {
+    public Optional<Tray> getTrayForSymbol(String traySymbol) {
         if (traySymbol.length() != 2) {
             return Optional.empty();
         }

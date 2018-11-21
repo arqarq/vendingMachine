@@ -44,32 +44,34 @@ public class DefaultEmployeeService implements EmployeeService {
                 machineRepository.save(machine);
                 return Optional.empty();
             } else {
-                return Optional.of("Tray could not be removed.");
+                return Optional.of("   Tray could not be removed.");
             }
         } else {
-            return Optional.of("There is no vending machine");
+            return Optional.of("   There is no vending machine");
         }
     }
 
     @Override
     public Optional<String> addProduct(String traySymbol, String productName, Integer howManyToAdd) {
         Optional<VendingMachine> loadedMachine = machineRepository.load();
+
         if (loadedMachine.isPresent()) {
             VendingMachine machine = loadedMachine.get();
             int counter = 0;
-            for (int i = 0; i < howManyToAdd; i++) {
-                Product productToAdd = new Product(productName);
-                if (machine.addProductToTray(traySymbol, productToAdd)) {
-                    machineRepository.save(machine);
-                    counter++;
-                } else {
-                    int leftProducts = howManyToAdd - counter;
-                    if (leftProducts == howManyToAdd) {
-                        return Optional.of("   There is no tray to add products - install tray.");
+            if (machine.getTrayForSymbol(traySymbol).isPresent()) {
+                for (int i = 0; i < howManyToAdd; i++) {
+                    Product productToAdd = new Product(productName);
+                    if (machine.addProductToTray(traySymbol, productToAdd)) {
+                        machineRepository.save(machine);
+                        counter++;
+                    } else if (counter == 0) {
+                        return Optional.of("   Tray is full, cannot add any product(s).");
                     } else {
-                        return Optional.of("   Not added " + leftProducts + " products.");
+                        return Optional.of("   Not added " + (howManyToAdd - counter) + " product(s).");
                     }
                 }
+            } else {
+                return Optional.of("   There is no tray here to add products - install tray.");
             }
             return Optional.empty();
         } else {
