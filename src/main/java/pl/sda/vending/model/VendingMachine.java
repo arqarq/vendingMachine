@@ -97,7 +97,7 @@ public class VendingMachine implements Serializable {
         } else {
             return false;
         }*/
-}
+    }
 
     private void generateTrayAtPosition(int rowNo, int colNo) {
         Random random = new Random();
@@ -208,10 +208,6 @@ public class VendingMachine implements Serializable {
     public Long colsCount() {
 //        return configuration.getLongProperty("machine.size.cols", 4L);
         return colsCount;
-    }
-
-    public Integer trayWidth() {
-        return trayWidth;
     }
 
 /*    public Optional<String> productNameAtPosition(Integer rowNo, Integer colNumber){

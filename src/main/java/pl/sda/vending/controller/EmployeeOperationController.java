@@ -28,7 +28,7 @@ public class EmployeeOperationController {
         // Print confirmation or error
     }
 
-    public void removeTray(){
+    public void removeTray() {
         // zapytac uzytkownika o symbol tacki do usuniecia
         String traySymbol = getTraySymbolFromUser();
         // wykonac odpowiednia metode w serwisie
@@ -83,5 +83,21 @@ public class EmployeeOperationController {
         Integer quantity = getHowManyToAdd();
         Optional<String> errorMessage = employeeService.addProduct(traySymbol, productName, quantity);
         System.out.println(errorMessage.orElse("   All products have been added."));
+    }
+
+    public void changePrice() {
+        String traySymbol = getTraySymbolFromUser();
+        Long newPrice = getTrayPriceFromUser();
+        Optional<String> errorMessage = employeeService.changePrice(traySymbol, newPrice);
+        System.out.println(errorMessage.orElse("   Tray price updated."));
+    }
+
+    public void removeProducts() {
+        String traySymbol = getTraySymbolFromUser();
+        String productNameToRemove = getProductNameFromUser();
+        Integer howManyToRemove = getHowManyToAdd();
+        Optional<String> errorMessage = employeeService.removeProduct(traySymbol, productNameToRemove, howManyToRemove);
+        System.out.println(errorMessage.orElse("   " + howManyToRemove + " product(s) with name: "
+                + productNameToRemove + " successfully removed from tray " + traySymbol + "."));
     }
 }

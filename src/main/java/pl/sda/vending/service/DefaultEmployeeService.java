@@ -78,4 +78,14 @@ public class DefaultEmployeeService implements EmployeeService {
             return Optional.of("   There is no vending machine, no products added");
         }
     }
+
+    @Override
+    public Optional<String> removeProduct(String traySymbol, String productName, Integer howManyToRemove) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<String> changePrice(String traySymbol, Long newPrice) {
+        return Optional.empty();
+    }
 }

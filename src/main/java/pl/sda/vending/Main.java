@@ -111,8 +111,10 @@ public class Main {
                         employeeOperationController.addProducts();
                         break;
                     case REMOVE_PRODUCT:
+                        employeeOperationController.removeProducts();
                         break;
                     case CHANGE_PRICE:
+                        employeeOperationController.changePrice();
                         break;
                     case EXIT:
                         System.out.println("   Going back to user menu");
