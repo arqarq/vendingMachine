@@ -71,7 +71,7 @@ public class Main {
             Integer menuNumber = Integer.valueOf(userSelection);
             return UserMenuSelection.selectionForOptionNumber(menuNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid selection format");
+            throw new IllegalArgumentException("   Invalid selection format");
         }
     }
 
@@ -82,7 +82,7 @@ public class Main {
             Integer menuNumber = Integer.valueOf(userSelection);
             return ServiceMenuSelection.selectionForOptionNumber(menuNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid selection format");
+            throw new IllegalArgumentException("   Invalid selection format");
         }
     }
 
