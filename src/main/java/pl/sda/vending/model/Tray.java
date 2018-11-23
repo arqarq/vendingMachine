@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class Tray implements Serializable {
     public static final long serialVersionUID = 1L;
-    private static final int MAX_SIZE = 10;
+    static final int MAX_SIZE = 10;
     private String symbol;
     private Long price;
     private Queue<Product> products;
