@@ -88,14 +88,15 @@ public class DefaultEmployeeService implements EmployeeService {
         Optional<VendingMachine> loadedMachine = machineRepository.load();
         if (loadedMachine.isPresent()) {
             VendingMachine machine = loadedMachine.get();
-            Optional<Tray> trayTemp = machine.getTrayForSymbol(traySymbol);
-            if (trayTemp.isPresent()) {
-                trayTemp.get().setPrice(newPrice);
-                machineRepository.save(machine);
-                return Optional.empty();
-            } else {
-                return Optional.of("   Could not find tray, check provided position.");
-            }
+            /*Optional<Tray> trayTemp = */
+            machine.getTrayForSymbol(traySymbol).get().setPrice(newPrice);
+//            if (trayTemp.isPresent()) {
+//            trayTemp.get().setPrice(newPrice);
+            machineRepository.save(machine);
+            return Optional.empty();
+//            } else {
+//                return Optional.of("   Could not find tray, check provided position.");
+//            }
         } else {
             return Optional.of("   There is no vending machine.");
         }
