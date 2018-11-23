@@ -7,7 +7,7 @@ import java.util.Queue;
 
 public class Tray implements Serializable {
     public static final long serialVersionUID = 1L;
-    public static final int MAX_SIZE = 10;
+    private static final int MAX_SIZE = 10;
     private String symbol;
     private Long price;
     private Queue<Product> products;
@@ -30,7 +30,11 @@ public class Tray implements Serializable {
         return price;
     }
 
-    public Optional<String> firstProductName() {
+    public void setPrice(Long price) {
+        this.price = price;
+    }
+
+    Optional<String> firstProductName() {
 //        if (products.peek() != null) {
 //              Product firstProduct = products.peek();
 //              String name = firstProduct.getName();
@@ -42,11 +46,11 @@ public class Tray implements Serializable {
 //        return null;
     }
 
-    public Optional<Product> buyProduct() {
+    Optional<Product> buyProduct() {
         return Optional.ofNullable(products.poll());
     }
 
-    public boolean addProduct(Product product) {
+    boolean addProduct(Product product) {
         if (products.size() < MAX_SIZE) {
             return products.add(product);
         } else {

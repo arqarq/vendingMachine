@@ -86,9 +86,20 @@ public class EmployeeOperationController {
     }
 
     public void changePrice() {
-        String traySymbol = getTraySymbolFromUser();
+        String traySymbol;
+        Optional<String> errorMessage;
+
+        while (true) {
+            traySymbol = getTraySymbolFromUser();
+            errorMessage = employeeService.checkTrayAvailability(traySymbol);
+            if (!errorMessage.isPresent()) {
+                break;
+            } else {
+                System.out.println(errorMessage.get());
+            }
+        }
         Long newPrice = getTrayPriceFromUser();
-        Optional<String> errorMessage = employeeService.changePrice(traySymbol, newPrice);
+        errorMessage = employeeService.changePrice(traySymbol, newPrice);
         System.out.println(errorMessage.orElse("   Tray price updated."));
     }
 
