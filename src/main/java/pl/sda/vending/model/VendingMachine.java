@@ -11,14 +11,14 @@ public class VendingMachine implements Serializable {
     //    private final Configuration configuration;
     private final Long rowsCount;
     private final Long colsCount;
-    private final Integer trayWidth;
+    //    private final Integer trayWidth;
     private final Tray[][] trays;
 
     public VendingMachine(Configuration configuration) {
 //        this.configuration = configuration;
         rowsCount = configuration.getLongProperty("machine.size.rows", 6L);
         colsCount = configuration.getLongProperty("machine.size.cols", 4L);
-        trayWidth = configuration.getIntProperty("machine.display.trayWidth", 12);
+//        trayWidth = configuration.getIntProperty("machine.display.trayWidth", 12);
         if (rowsCount <= 0 || rowsCount > 26) {
             throw new IllegalArgumentException("Row count " + rowsCount + " is invalid");
         }
@@ -286,5 +286,15 @@ public class VendingMachine implements Serializable {
         int rowNo = first - 'A';
         int colNo = second - '1';
         return getTrayAtPosition(rowNo, colNo);
+    }
+
+    public boolean changePrice(String traySymbol, Long newPrice) {
+        Optional<Tray> trayForSymbol = getTrayForSymbol(traySymbol);
+        if (trayForSymbol.isPresent()) {
+            trayForSymbol.get().setPrice(newPrice);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

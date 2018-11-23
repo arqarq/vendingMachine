@@ -12,6 +12,7 @@ import java.util.Optional;
 public class DefaultEmployeeService implements EmployeeService {
     private final VendingMachineRepository machineRepository;
     private final Configuration configuration;
+    private VendingMachine machine;
 
     public DefaultEmployeeService(VendingMachineRepository machineRepository, Configuration configuration) {
         this.machineRepository = machineRepository;
@@ -21,9 +22,9 @@ public class DefaultEmployeeService implements EmployeeService {
     @Override
     public Optional<String> addTray(Tray tray) {
         Optional<VendingMachine> loadedVendingMachine = machineRepository.load();
-        VendingMachine vendingMachine = loadedVendingMachine.orElseGet(() -> new VendingMachine(configuration));
-        if (vendingMachine.placeTray(tray)) {
-            machineRepository.save(vendingMachine);
+        VendingMachine machine = loadedVendingMachine.orElseGet(() -> new VendingMachine(configuration));
+        if (machine.placeTray(tray)) {
+            machineRepository.save(machine);
             return Optional.empty();
         }
         return Optional.of("   Could not add tray, check provided position.");
@@ -55,30 +56,35 @@ public class DefaultEmployeeService implements EmployeeService {
     public Optional<String> addProduct(String traySymbol, String productName, Integer howManyToAdd) {
         Optional<VendingMachine> loadedMachine = machineRepository.load();
         if (loadedMachine.isPresent()) {
-            VendingMachine machine = loadedMachine.get();
-            int counter = 0;
+            machine = loadedMachine.get();
             if (machine.getTrayForSymbol(traySymbol).isPresent()) {
-                for (int i = 0; i < howManyToAdd; i++) {
-                    Product productToAdd = new Product(productName);
-                    if (machine.addProductToTray(traySymbol, productToAdd)) {
-                        machineRepository.save(machine);
-                        counter++;
-                    } else if (counter == 0) {
-                        return Optional.of("   Tray is full, cannot add any product(s).");
-                    } else {
-                        return Optional.of("   Not added " + (howManyToAdd - counter) + " product(s).");
-                    }
-                }
+                return addProductsWithCheck(traySymbol, productName, howManyToAdd);
             } else {
                 return Optional.of("   There is no tray here to add products - install tray.");
             }
-            return Optional.empty();
         } else {
             return Optional.of("   There is no vending machine, no products added.");
         }
     }
 
-    @Override
+    private Optional<String> addProductsWithCheck(String traySymbol, String productName, Integer howManyToAdd) {
+        int counter = 0;
+
+        for (int i = 0; i < howManyToAdd; i++) {
+            Product productToAdd = new Product(productName);
+            if (machine.addProductToTray(traySymbol, productToAdd)) {
+                machineRepository.save(machine);
+                counter++;
+            } else if (counter == 0) {
+                return Optional.of("   Tray is full, cannot add any product(s).");
+            } else {
+                return Optional.of("   Not added " + (howManyToAdd - counter) + " product(s).");
+            }
+        }
+        return Optional.empty();
+    }
+
+    @Override // TODO
     public Optional<String> removeProduct(String traySymbol, String productName, Integer howManyToRemove) {
         return Optional.empty();
     }
@@ -89,11 +95,15 @@ public class DefaultEmployeeService implements EmployeeService {
         if (loadedMachine.isPresent()) {
             VendingMachine machine = loadedMachine.get();
             /*Optional<Tray> trayTemp = */
-            machine.getTrayForSymbol(traySymbol).get().setPrice(newPrice);
+//            machine.getTrayForSymbol(traySymbol).get().setPrice(newPrice);
+            if (machine.changePrice(traySymbol, newPrice)) {
+                machineRepository.save(machine);
+                return Optional.empty();
+            } else {
+                return Optional.of("   Couldn't change tray price.");
+            }
 //            if (trayTemp.isPresent()) {
 //            trayTemp.get().setPrice(newPrice);
-            machineRepository.save(machine);
-            return Optional.empty();
 //            } else {
 //                return Optional.of("   Could not find tray, check provided position.");
 //            }
