@@ -93,7 +93,6 @@ public class Main {
                 switch (serviceUserSelection) {
                     case ADD_TRAY:
                         employeeOperationController.addTray();
-//                    System.out.println();
                         break;
                     case REMOVE_TRAY:
                         employeeOperationController.removeTray();
