@@ -2,12 +2,15 @@ package pl.sda.vending.model;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
+import org.assertj.core.api.Assertions;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import pl.sda.vending.util.Configuration;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -22,7 +25,7 @@ public class VendingMachineTest {
         // When
         new VendingMachine(config);
         // Then
-        fail("Exception should be raised");
+        Assert.fail("Exception should be raised");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -34,7 +37,7 @@ public class VendingMachineTest {
         // When
         new VendingMachine(config);
         // Then
-        fail("Exception should be raised");
+        Assertions.fail("Exception should be raised");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -46,7 +49,7 @@ public class VendingMachineTest {
         // When
         new VendingMachine(config);
         // Then
-        fail("Exception should be raised");
+        Assert.fail("Exception should be raised");
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -58,7 +61,7 @@ public class VendingMachineTest {
         // When
         new VendingMachine(config);
         // Then
-        fail("Exception should be raised");
+        Assertions.fail("Exception should be raised");
     }
 
     @Test
@@ -193,6 +196,7 @@ public class VendingMachineTest {
         Integer howManyRemoved = machine.removeProductFromTray("C4", 2);
         // Then
         assertEquals((Integer) 1, howManyRemoved);
+        assertThat(howManyRemoved).isEqualTo(1);
     }
 
     private Configuration getMockedConfiguration() {
