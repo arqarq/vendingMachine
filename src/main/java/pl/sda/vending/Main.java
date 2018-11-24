@@ -13,12 +13,16 @@ import pl.sda.vending.util.Configuration;
 import java.util.Scanner;
 
 public class Main {
-    private final Configuration configuration = new Configuration();
-    private final VendingMachineRepository vendingMachineRepository = new HardDriveVendingMachineRepository(configuration);
-    private final EmployeeService employeeService = new DefaultEmployeeService(vendingMachineRepository, configuration);
-    private final CustomerService customerService = new DefaultCustomerService(vendingMachineRepository);
-    private final EmployeeOperationController employeeOperationController = new EmployeeOperationController(employeeService);
-    //    private VendingMachine vendingMachine = new VendingMachine(configuration);
+    private final Configuration configuration =
+            new Configuration();
+    private final VendingMachineRepository vendingMachineRepository =
+            new HardDriveVendingMachineRepository(configuration);
+    private final EmployeeService employeeService =
+            new DefaultEmployeeService(vendingMachineRepository, configuration);
+    private final CustomerService customerService =
+            new DefaultCustomerService(vendingMachineRepository);
+    private final EmployeeOperationController employeeOperationController =
+            new EmployeeOperationController(employeeService);
     private final CustomerOperationController customerOperationController =
             new CustomerOperationController(customerService, configuration);
 
