@@ -55,7 +55,7 @@ public class StringUtil {
             amountAsSB.append(String.valueOf(centsAmount).charAt(1)).append(String.valueOf(centsAmount).charAt(0));
         }
         if (centsAmount < 10) {
-            amountAsSB.append(String.valueOf(centsAmount));
+            amountAsSB.append(centsAmount);
             amountAsSB.append("0");
         }
 
@@ -78,7 +78,7 @@ public class StringUtil {
                     amountAsSB.append(String.valueOf(dolarsAmount).charAt(0));
                 }
                 if (dolarsAmount < 10) {
-                    amountAsSB.append(String.valueOf(dolarsAmount));
+                    amountAsSB.append(dolarsAmount);
                 }
                 dolarsAmount = temp;
             }

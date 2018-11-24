@@ -12,7 +12,6 @@ import java.util.Optional;
 public class DefaultEmployeeService implements EmployeeService {
     private final VendingMachineRepository machineRepository;
     private final Configuration configuration;
-    private VendingMachine machine;
 
     public DefaultEmployeeService(VendingMachineRepository machineRepository, Configuration configuration) {
         this.machineRepository = machineRepository;
@@ -20,7 +19,6 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-//    public Optional<String> addTray(Tray tray) {
     public Optional<String> addTray(String traySymbol, Long price) {
         Optional<VendingMachine> loadedVendingMachine = machineRepository.load();
         VendingMachine machine = loadedVendingMachine.orElseGet(() -> new VendingMachine(configuration));
@@ -58,9 +56,15 @@ public class DefaultEmployeeService implements EmployeeService {
     public Optional<String> addProduct(String traySymbol, String productName, Integer howManyToAdd) {
         Optional<VendingMachine> loadedMachine = machineRepository.load();
         if (loadedMachine.isPresent()) {
-            machine = loadedMachine.get();
+            VendingMachine machine = loadedMachine.get();
             if (machine.getTrayForSymbol(traySymbol).isPresent()) {
-                return addProductsWithCheck(traySymbol, productName, howManyToAdd);
+                Tray trayToAddProductsTo = machine.getTrayForSymbol(traySymbol).get();
+                Optional<String> message = addProductsWithCheck(trayToAddProductsTo, productName, howManyToAdd);
+                if (!message.isPresent()) {
+                    machineRepository.save(machine);
+//                    return message;
+                }
+                return message;
             } else {
                 return Optional.of("   There is no tray here to add products - install tray.");
             }
@@ -69,13 +73,12 @@ public class DefaultEmployeeService implements EmployeeService {
         }
     }
 
-    private Optional<String> addProductsWithCheck(String traySymbol, String productName, Integer howManyToAdd) {
+    private Optional<String> addProductsWithCheck(Tray tray, String productName, Integer howManyToAdd) {
         int counter = 0;
 
         for (int i = 0; i < howManyToAdd; i++) {
             Product productToAdd = new Product(productName);
-            if (machine.addProductToTray(traySymbol, productToAdd)) {
-                machineRepository.save(machine);
+            if (tray.addProduct(productToAdd)) {
                 counter++;
             } else if (counter == 0) {
                 return Optional.of("   Tray is full, cannot add any product(s).");
@@ -95,7 +98,7 @@ public class DefaultEmployeeService implements EmployeeService {
             if (removed.equals(howManyToRemove)) {
                 machineRepository.save(machine);
                 return Optional.empty();
-            } else if (removed == 0) { // TODO
+            } else if (removed.equals(0)) {
                 return Optional.of("   Couldn't remove any products from tray, check given tray.");
             } else {
                 return Optional.of("   Removed " + removed + " products only.");

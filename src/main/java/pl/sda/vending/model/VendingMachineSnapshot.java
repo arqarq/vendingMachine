@@ -30,9 +30,9 @@ public class VendingMachineSnapshot {
     }
 
     public static class Builder {
-        private TraySnapshot[][] trays;
-        private int rows;
-        private int cols;
+        private final TraySnapshot[][] trays;
+        private final int rows;
+        private final int cols;
 
         private Builder(int rows, int cols) {
             trays = new TraySnapshot[rows][cols];

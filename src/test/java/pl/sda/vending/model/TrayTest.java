@@ -3,7 +3,6 @@ package pl.sda.vending.model;
 import org.junit.Test;
 
 import java.util.Optional;
-import java.util.Properties;
 
 import static org.junit.Assert.*;
 

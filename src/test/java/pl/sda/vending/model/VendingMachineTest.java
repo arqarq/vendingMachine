@@ -9,8 +9,6 @@ import pl.sda.vending.util.Configuration;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 
 @RunWith(JUnitParamsRunner.class)

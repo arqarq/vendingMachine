@@ -8,9 +8,9 @@ import java.util.Queue;
 public class Tray implements Serializable {
     public static final long serialVersionUID = 1L;
     static final int MAX_SIZE = 10;
-    private String symbol;
+    private final String symbol;
     private Long price;
-    private Queue<Product> products;
+    private final Queue<Product> products;
 
     private Tray(Builder builder) {
         symbol = builder.symbol;
@@ -22,7 +22,7 @@ public class Tray implements Serializable {
         return new Builder(symbol);
     }
 
-    public String getSymbol() {
+    String getSymbol() {
         return symbol;
     }
 
@@ -49,7 +49,7 @@ public class Tray implements Serializable {
         return Optional.ofNullable(products.poll());
     }
 
-    boolean addProduct(Product product) {
+    public boolean addProduct(Product product) {
         if (products.size() < MAX_SIZE) {
             return products.add(product);
         } else {
@@ -57,7 +57,7 @@ public class Tray implements Serializable {
         }
     }
 
-    Integer removeProductsFromThisTray(Integer howManyToRemove) { // TODO
+    Integer removeProductsFromThisTray(Integer howManyToRemove) {
         if (products.size() >= howManyToRemove) {
             for (int i = 0; i < howManyToRemove; i++) {
                 products.poll();
@@ -72,14 +72,14 @@ public class Tray implements Serializable {
         }
     }
 
-    public TraySnapshot snapshot() {
+    TraySnapshot snapshot() {
         return new TraySnapshot(symbol, price, firstProductName().orElse("--"));
     }
 
     public static class Builder {
-        private String symbol;
+        private final String symbol;
         private Long price;
-        private Queue<Product> products;
+        private final Queue<Product> products;
 
         private Builder(String symbol) {
             this.symbol = symbol;
