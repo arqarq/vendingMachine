@@ -60,10 +60,7 @@ public class DefaultEmployeeService implements EmployeeService {
             if (machine.getTrayForSymbol(traySymbol).isPresent()) {
                 Tray trayToAddProductsTo = machine.getTrayForSymbol(traySymbol).get();
                 Optional<String> message = addProductsWithCheck(trayToAddProductsTo, productName, howManyToAdd);
-                if (!message.isPresent()) {
-                    machineRepository.save(machine);
-//                    return message;
-                }
+                machineRepository.save(machine);
                 return message;
             } else {
                 return Optional.of("   There is no tray here to add products - install tray.");
@@ -99,9 +96,10 @@ public class DefaultEmployeeService implements EmployeeService {
                 machineRepository.save(machine);
                 return Optional.empty();
             } else if (removed.equals(0)) {
-                return Optional.of("   Couldn't remove any products from tray, check given tray.");
+                return Optional.of("   Tray already empty.");
             } else {
-                return Optional.of("   Removed " + removed + " products only.");
+                machineRepository.save(machine);
+                return Optional.of("   Removed " + removed + " product(s) only.");
             }
         } else {
             return Optional.of("   There is no vending machine.");

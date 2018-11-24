@@ -179,7 +179,7 @@ public class VendingMachine implements Serializable {
         trays[rowNo][colNo] = trayBuilder.build();
     }
 
-    public Optional<Tray> getTrayAtPosition(int rowNo, int colNo) {
+    Optional<Tray> getTrayAtPosition(int rowNo, int colNo) {
         // zwroc tacke opakowana w Optional
         // a jezel nie istnieje, to pusty optional
 
@@ -300,9 +300,9 @@ public class VendingMachine implements Serializable {
 
     //    public boolean removeProductFromTray(String traySymbol, Integer howManyToRemove) {
     public Integer removeProductFromTray(String traySymbol, Integer howManyToRemove) {
-        Optional<Tray> trayFromToRemove = getTrayForSymbol(traySymbol);
-        if (trayFromToRemove.isPresent()) {
-            return trayFromToRemove.get().removeProductsFromThisTray(howManyToRemove);
+        Optional<Tray> trayFromWhichRemove = getTrayForSymbol(traySymbol);
+        if (trayFromWhichRemove.isPresent()) {
+            return trayFromWhichRemove.get().removeProductsFromThisTray(howManyToRemove);
         } else {
             return 0;
         }

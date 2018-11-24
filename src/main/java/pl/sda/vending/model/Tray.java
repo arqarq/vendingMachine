@@ -9,8 +9,8 @@ public class Tray implements Serializable {
     public static final long serialVersionUID = 1L;
     static final int MAX_SIZE = 10;
     private final String symbol;
-    private Long price;
     private final Queue<Product> products;
+    private Long price;
 
     private Tray(Builder builder) {
         symbol = builder.symbol;
@@ -58,18 +58,21 @@ public class Tray implements Serializable {
     }
 
     Integer removeProductsFromThisTray(Integer howManyToRemove) {
-        if (products.size() >= howManyToRemove) {
+        int quantityOfProductsInTray;
+
+        if ((quantityOfProductsInTray = products.size()) == 0) {
+            return 0;
+        }
+        if (quantityOfProductsInTray >= howManyToRemove) {
             for (int i = 0; i < howManyToRemove; i++) {
                 products.poll();
             }
             return howManyToRemove;
-        } else {
-            int howManyRemoved = howManyToRemove - products.size();
-            for (int i = 0; i < products.size(); i++) {
-                products.poll();
-            }
-            return howManyRemoved;
         }
+        for (int i = 0; i < quantityOfProductsInTray; i++) {
+            products.poll();
+        }
+        return howManyToRemove - quantityOfProductsInTray;
     }
 
     TraySnapshot snapshot() {
@@ -78,8 +81,8 @@ public class Tray implements Serializable {
 
     public static class Builder {
         private final String symbol;
-        private Long price;
         private final Queue<Product> products;
+        private Long price;
 
         private Builder(String symbol) {
             this.symbol = symbol;

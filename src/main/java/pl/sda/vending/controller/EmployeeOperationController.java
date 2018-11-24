@@ -60,10 +60,11 @@ public class EmployeeOperationController {
         return getUserInput();
     }
 
-    private Integer getHowManyToAdd() {
+    private Integer getHowManyTo() {
         Integer quantity = null;
+
         while (quantity == null) {
-            System.out.print(" > Provide product quantity: ");
+            System.out.print(" > Provide products quantity: ");
             try {
                 quantity = Integer.parseInt(getUserInput());
             } catch (NumberFormatException e) {
@@ -80,12 +81,21 @@ public class EmployeeOperationController {
     public void addProducts() {
         String traySymbol = getTraySymbolFromUser();
         String productName = getProductNameFromUser();
-        Integer quantity = getHowManyToAdd();
+        Integer quantity = getHowManyTo();
         Optional<String> errorMessage = employeeService.addProduct(traySymbol, productName, quantity);
         System.out.println(errorMessage.orElse("   All products have been added."));
     }
 
     public void changePrice() {
+        Optional<String> errorMessage;
+
+        String traySymbol = getCorrectTraySymbolFromUser();
+        Long newPrice = getTrayPriceFromUser();
+        errorMessage = employeeService.changePrice(traySymbol, newPrice);
+        System.out.println(errorMessage.orElse("   Tray price updated."));
+    }
+
+    private String getCorrectTraySymbolFromUser() {
         String traySymbol;
         Optional<String> errorMessage;
 
@@ -98,17 +108,15 @@ public class EmployeeOperationController {
                 System.out.println(errorMessage.get());
             }
         }
-        Long newPrice = getTrayPriceFromUser();
-        errorMessage = employeeService.changePrice(traySymbol, newPrice);
-        System.out.println(errorMessage.orElse("   Tray price updated."));
+        return traySymbol;
     }
 
     public void removeProducts() {
-        String traySymbol = getTraySymbolFromUser();
+        String traySymbol = getCorrectTraySymbolFromUser();
 //        String productNameToRemove = getProductNameFromUser();
-        Integer howManyToRemove = getHowManyToAdd();
+        Integer howManyToRemove = getHowManyTo();
         Optional<String> errorMessage = employeeService.removeProduct(traySymbol, /*productNameToRemove,*/ howManyToRemove);
         System.out.println(errorMessage.orElse("   " + howManyToRemove + " product(s)" +
-                /*+ productNameToRemove + */" successfully removed from tray " + traySymbol + "."));
+                /*+ productNameToRemove + */" successfully removed from tray."));
     }
 }
