@@ -115,12 +115,6 @@ public class Main {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-            // wyswietl menu uzytkownika serwisowego
-            // odczytac, ktora opcje wybral serwisant
-            //   mozna wzorowac sie na getUserSelection
-            // za pomoca switch-case, obsluzyc jego wybor
-            //   dla case ADD_TRAY wywolac metode addTray
-            //   znajdujaca sie w kontrolerze dla serwisanta
         }
     }
 
