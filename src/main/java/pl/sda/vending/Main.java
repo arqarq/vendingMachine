@@ -39,12 +39,6 @@ public class Main {
                 switch (userSelection) {
                     case BUY_PRODUCT:
                         customerOperationController.buyProduct();
-                        // 1. pobrac od uzytkownika symbol tacki
-                        // 2. wywolac odpowiednia metode z kontrolera
-                        //    Optional buyProductForSymbol(String traySymbol)
-                        // 3. Jezeli udalo sie kupic produkt
-                        //    To wypisz na ekran potwierdzenie oraz nazwe produktu
-                        // 4. Jezeli nie udalo sie kupic, to wyswietlamy komunikat o braku produktu
                         break;
                     case EXIT:
                         System.out.println("   Bye");
