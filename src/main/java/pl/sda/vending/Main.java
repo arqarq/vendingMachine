@@ -2,24 +2,25 @@ package pl.sda.vending;
 
 import pl.sda.vending.controller.CustomerOperationController;
 import pl.sda.vending.controller.EmployeeOperationController;
+import pl.sda.vending.controller.service.CustomerService;
 import pl.sda.vending.controller.service.EmployeeService;
-import pl.sda.vending.model.Product;
 import pl.sda.vending.repository.HardDriveVendingMachineRepository;
+import pl.sda.vending.service.DefaultCustomerService;
 import pl.sda.vending.service.DefaultEmployeeService;
 import pl.sda.vending.service.repository.VendingMachineRepository;
 import pl.sda.vending.util.Configuration;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
     private Configuration configuration = new Configuration();
     private VendingMachineRepository vendingMachineRepository = new HardDriveVendingMachineRepository(configuration);
     private EmployeeService employeeService = new DefaultEmployeeService(vendingMachineRepository, configuration);
+    private CustomerService customerService = new DefaultCustomerService(vendingMachineRepository);
     private EmployeeOperationController employeeOperationController = new EmployeeOperationController(employeeService);
     //    private VendingMachine vendingMachine = new VendingMachine(configuration);
     private CustomerOperationController customerOperationController =
-            new CustomerOperationController(vendingMachineRepository, configuration);
+            new CustomerOperationController(customerService, configuration);
 
     public static void main(String[] args) {
         new Main().startApplication();
@@ -33,15 +34,7 @@ public class Main {
                 UserMenuSelection userSelection = getUserSelection();
                 switch (userSelection) {
                     case BUY_PRODUCT:
-                        System.out.print(" > Please, input tray symbol: ");
-                        String traySymbol = new Scanner(System.in).nextLine().toUpperCase();
-                        Optional<Product> productBought = customerOperationController.buyProductForSymbol(traySymbol);
-                        if (productBought.isPresent()) {
-                            System.out.println("   Success, you bought: " + productBought.get().getName());
-                        } else {
-                            System.out.println("   Product N/A");
-                        }
-//                        System.out.println();
+                        customerOperationController.buyProduct();
                         // 1. pobrac od uzytkownika symbol tacki
                         // 2. wywolac odpowiednia metode z kontrolera
                         //    Optional buyProductForSymbol(String traySymbol)

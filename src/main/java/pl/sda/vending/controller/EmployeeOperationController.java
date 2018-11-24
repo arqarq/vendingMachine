@@ -1,7 +1,6 @@
 package pl.sda.vending.controller;
 
 import pl.sda.vending.controller.service.EmployeeService;
-import pl.sda.vending.model.Tray;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -16,10 +15,11 @@ public class EmployeeOperationController {
     public void addTray() {
         String traySymbol = getTraySymbolFromUser();
         Long trayPrice = getTrayPriceFromUser();
-        Tray newTray = Tray.builder(traySymbol)
-                .price(trayPrice)
-                .build();
-        Optional<String> errorMessage = employeeService.addTray(newTray);
+//        Tray newTray = Tray.builder(traySymbol)
+//                .price(trayPrice)
+//                .build();
+//        Optional<String> errorMessage = employeeService.addTray(newTray);
+        Optional<String> errorMessage = employeeService.addTray(traySymbol, trayPrice);
         System.out.println(errorMessage.orElse("   Tray has been added."));
         // ask for tray symbol
         // ask for tray price
@@ -105,10 +105,10 @@ public class EmployeeOperationController {
 
     public void removeProducts() {
         String traySymbol = getTraySymbolFromUser();
-        String productNameToRemove = getProductNameFromUser();
+//        String productNameToRemove = getProductNameFromUser();
         Integer howManyToRemove = getHowManyToAdd();
-        Optional<String> errorMessage = employeeService.removeProduct(traySymbol, productNameToRemove, howManyToRemove);
-        System.out.println(errorMessage.orElse("   " + howManyToRemove + " product(s) with name: "
-                + productNameToRemove + " successfully removed from tray " + traySymbol + "."));
+        Optional<String> errorMessage = employeeService.removeProduct(traySymbol, /*productNameToRemove,*/ howManyToRemove);
+        System.out.println(errorMessage.orElse("   " + howManyToRemove + " product(s)" +
+                /*+ productNameToRemove + */" successfully removed from tray " + traySymbol + "."));
     }
 }

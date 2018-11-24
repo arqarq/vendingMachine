@@ -20,9 +20,11 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-    public Optional<String> addTray(Tray tray) {
+//    public Optional<String> addTray(Tray tray) {
+    public Optional<String> addTray(String traySymbol, Long price) {
         Optional<VendingMachine> loadedVendingMachine = machineRepository.load();
         VendingMachine machine = loadedVendingMachine.orElseGet(() -> new VendingMachine(configuration));
+        Tray tray = Tray.builder(traySymbol).price(price).build();
         if (machine.placeTray(tray)) {
             machineRepository.save(machine);
             return Optional.empty();
@@ -72,7 +74,7 @@ public class DefaultEmployeeService implements EmployeeService {
 
         for (int i = 0; i < howManyToAdd; i++) {
             Product productToAdd = new Product(productName);
-            if (machine.addProductToTray(traySymbol, productToAdd)) { // TODO
+            if (machine.addProductToTray(traySymbol, productToAdd)) {
                 machineRepository.save(machine);
                 counter++;
             } else if (counter == 0) {
@@ -84,9 +86,23 @@ public class DefaultEmployeeService implements EmployeeService {
         return Optional.empty();
     }
 
-    @Override // TODO
-    public Optional<String> removeProduct(String traySymbol, String productName, Integer howManyToRemove) {
-        return Optional.empty();
+    @Override
+    public Optional<String> removeProduct(String traySymbol, /*String productName,*/ Integer howManyToRemove) {
+        Optional<VendingMachine> loadedMachine = machineRepository.load();
+        if (loadedMachine.isPresent()) {
+            VendingMachine machine = loadedMachine.get();
+            Integer removed = machine.removeProductFromTray(traySymbol, howManyToRemove);
+            if (removed.equals(howManyToRemove)) {
+                machineRepository.save(machine);
+                return Optional.empty();
+            } else if (removed == 0) { // TODO
+                return Optional.of("   Couldn't remove any products from tray, check given tray.");
+            } else {
+                return Optional.of("   Removed " + removed + " products only.");
+            }
+        } else {
+            return Optional.of("   There is no vending machine.");
+        }
     }
 
     @Override

@@ -297,4 +297,32 @@ public class VendingMachine implements Serializable {
             return false;
         }
     }
+
+    //    public boolean removeProductFromTray(String traySymbol, Integer howManyToRemove) {
+    public Integer removeProductFromTray(String traySymbol, Integer howManyToRemove) {
+        Optional<Tray> trayFromToRemove = getTrayForSymbol(traySymbol);
+        if (trayFromToRemove.isPresent()) {
+            return trayFromToRemove.get().removeProductsFromThisTray(howManyToRemove);
+        } else {
+            return 0;
+        }
+    }
+
+    public VendingMachineSnapshot snapshot() {
+        // pobierz builder snapshotu
+        // przejsc po tackach
+        // wywolac operacje snapshotu
+        // zapisac snapshot tacki w builderze
+        // zwroc zbudowany obiekt
+        VendingMachineSnapshot.Builder builder = VendingMachineSnapshot.builder(
+                rowsCount.intValue(), colsCount.intValue());
+        for (int i = 0; i < trays.length; i++) {
+            for (int j = 0; j < trays[i].length; j++) {
+                if (trays[i][j] != null) {
+                    builder.tray(i, j, trays[i][j].snapshot());
+                }
+            }
+        }
+        return builder.build();
+    }
 }

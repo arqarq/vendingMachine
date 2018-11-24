@@ -43,7 +43,6 @@ public class Tray implements Serializable {
 //          return Optional.empty();
 //        }
         return Optional.ofNullable(products.peek()).map(Product::getName);
-//        return null;
     }
 
     Optional<Product> buyProduct() {
@@ -56,6 +55,25 @@ public class Tray implements Serializable {
         } else {
             return false;
         }
+    }
+
+    Integer removeProductsFromThisTray(Integer howManyToRemove) { // TODO
+        if (products.size() >= howManyToRemove) {
+            for (int i = 0; i < howManyToRemove; i++) {
+                products.poll();
+            }
+            return howManyToRemove;
+        } else {
+            int howManyRemoved = howManyToRemove - products.size();
+            for (int i = 0; i < products.size(); i++) {
+                products.poll();
+            }
+            return howManyRemoved;
+        }
+    }
+
+    public TraySnapshot snapshot() {
+        return new TraySnapshot(symbol, price, firstProductName().orElse("--"));
     }
 
     public static class Builder {
