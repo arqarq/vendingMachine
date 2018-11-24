@@ -30,7 +30,7 @@ public class Tray implements Serializable {
         return price;
     }
 
-    public void setPrice(Long price) {
+    void setPrice(Long price) {
         this.price = price;
     }
 

@@ -72,7 +72,7 @@ public class DefaultEmployeeService implements EmployeeService {
 
         for (int i = 0; i < howManyToAdd; i++) {
             Product productToAdd = new Product(productName);
-            if (machine.addProductToTray(traySymbol, productToAdd)) {
+            if (machine.addProductToTray(traySymbol, productToAdd)) { // TODO
                 machineRepository.save(machine);
                 counter++;
             } else if (counter == 0) {
@@ -94,23 +94,32 @@ public class DefaultEmployeeService implements EmployeeService {
         Optional<VendingMachine> loadedMachine = machineRepository.load();
         if (loadedMachine.isPresent()) {
             VendingMachine machine = loadedMachine.get();
-            /*Optional<Tray> trayTemp = */
-//            machine.getTrayForSymbol(traySymbol).get().setPrice(newPrice);
-            if (machine.changePrice(traySymbol, newPrice)) {
+            if (machine.updatePriceForSymbol(traySymbol, newPrice)) {
                 machineRepository.save(machine);
                 return Optional.empty();
             } else {
                 return Optional.of("   Couldn't change tray price.");
             }
-//            if (trayTemp.isPresent()) {
-//            trayTemp.get().setPrice(newPrice);
-//            } else {
-//                return Optional.of("   Could not find tray, check provided position.");
-//            }
         } else {
             return Optional.of("   There is no vending machine.");
         }
     }
+
+//    @Override
+//    public Optional<String> changePrice_(String traySymbol, Long updatedPrice) {
+//        Optional<VendingMachine> loadedMachine = machineRepository.load();
+//        if (loadedMachine.isPresent()) {
+//            VendingMachine machine = loadedMachine.get();
+//            boolean successful = machine.updatePriceForSymbol(traySymbol, updatedPrice);
+//            machineRepository.save(machine);
+//            if (successful) {
+//                return Optional.empty();
+//            } else {
+//                return Optional.of("   Could not change price, check tray symbol.");
+//            }
+//        }
+//        return Optional.of("   There is no Vending Machine, create one first.");
+//    }
 
     @Override
     public Optional<String> checkTrayAvailability(String traySymbol) {

@@ -288,7 +288,7 @@ public class VendingMachine implements Serializable {
         return getTrayAtPosition(rowNo, colNo);
     }
 
-    public boolean changePrice(String traySymbol, Long newPrice) {
+    public boolean updatePriceForSymbol(String traySymbol, Long newPrice) {
         Optional<Tray> trayForSymbol = getTrayForSymbol(traySymbol);
         if (trayForSymbol.isPresent()) {
             trayForSymbol.get().setPrice(newPrice);

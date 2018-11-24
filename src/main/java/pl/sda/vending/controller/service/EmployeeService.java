@@ -13,7 +13,7 @@ public interface EmployeeService {
 
     Optional<String> removeProduct(String traySymbol, String productName, Integer howManyToRemove);
 
-    Optional<String> changePrice(String traySymbol, Long newPrice);
+    Optional<String> changePrice(String traySymbol, Long updatedPrice);
 
     Optional<String> checkTrayAvailability(String traySymbol);
 }
