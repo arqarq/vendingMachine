@@ -86,7 +86,9 @@ public class CustomerOperationController {
 
     private void printSymbol(VendingMachineSnapshot machine, int rowNo, int colNo) {
         Optional<TraySnapshot> tray = machine.getTray(rowNo, colNo);
-        String traySymbol = tray.map(TraySnapshot::getSymbol).orElse("--");
+        String traySymbol = tray
+                .map(TraySnapshot::getSymbol)
+                .orElse("--");
 //        .map(CustomerOperationController::convert)
 //        char symbolLetter = (char) ('A' + rowNo);
 //        int symbolNumber = colNo + 1;
