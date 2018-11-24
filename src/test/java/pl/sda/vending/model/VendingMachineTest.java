@@ -181,6 +181,20 @@ public class VendingMachineTest {
          */
     }
 
+    @Test
+    public void shouldBeAbleToRemovedOnlyAvailablaProductsFromTray() {
+        // Given
+        String traySymbol = "C4";
+        Product product = new Product("Mars");
+        VendingMachine machine = new VendingMachine(getMockedConfiguration());
+        Tray tray = Tray.builder(traySymbol).product(product).build();
+        machine.placeTray(tray);
+        // When
+        Integer howManyRemoved = machine.removeProductFromTray("C4", 2);
+        // Then
+        assertEquals((Integer) 1, howManyRemoved);
+    }
+
     private Configuration getMockedConfiguration() {
         Configuration config = mock(Configuration.class);
         doReturn(6L).when(config).getLongProperty(eq("machine.size.rows"), anyLong());
