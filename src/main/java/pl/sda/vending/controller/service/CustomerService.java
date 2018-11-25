@@ -9,4 +9,5 @@ public interface CustomerService {
     Optional<VendingMachineSnapshot> loadMachineToPrint();
 
     Optional<Product> buyProductFromTray(String traySymbol); // TODO
+    // snapshot dla produktu
 }
